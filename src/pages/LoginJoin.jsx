@@ -15,13 +15,14 @@ function LoginJoin() {
 
       return (
             <div className="container flex min-w-full min-h-screen bg-blue-500 flex-row justify-between">
-                  <div className="login-form w-[50%] bg-green-500 min-h-full">
+                  <div className="login-form w-[53%] bg-green-500 min-h-full p-6">
                         <h2 className="text-3xl">WELCOME BACK 👋</h2>
                         <p>
-                              Today Is A New Day. It's Your Day. You Shape It.
-                              <br />
-                              Sign In To Start Managing Your Projects.
+                        Today Is A New Day. It&apos;s Your Day. You Shape It.
+                        <br />
+                        Sign In To Start Managing Your Projects.
                         </p>
+
                         <form onSubmit={handleSubmit}>
                               <div>
                                     <label htmlFor="email">Email</label>
@@ -60,16 +61,17 @@ function LoginJoin() {
                               </button>
                         </div>
                         <p>
-                              Don't You Have An Account? <a href="#">Sign Up</a>
-                        </p>
+                        Don&apos;t have an account? <a href="#">Sign Up</a>
+                         </p>
+
                   </div>
-                  <div className="image-container w-[50%] bg-red-500 min-h-full overflow-hidden">
+                  <div className="image-container w-[47%] bg-red-500 h-screen overflow-hidden p-6">
                         <Image
-                              src="/images/login.png"
+                              src="/images/bg1.png"
                               alt="login"
                               width={500}
                               height={500}
-                              className="w-fit"
+                              className="w-full h-full object-cover rounded-2xl"
                         />
                   </div>
             </div>
