@@ -23,21 +23,19 @@ module.exports = {
           "hr": "#cfdfe2",
           "btnText": "#ffffff",
         },
+        Landingpages:{
+          "bg-color" : "#FCFCFC",
+          "brand primary" : "#57B8FF",
+          "brand-secondary" : "#119BFF",
+          "textPrimary" : "#0F0F0F",
+        },
       },
       spacing: {},
     fontFamily: {
-      "roboto": "Roboto",
-      "small": "Poppins",
-      "h1": "Urbanist"
+      "Poppins": ["Poppins", "sans-serif"],
+      "Urbanist": ["Urbanist", "sans-serif"],
+      "unbounded":["unbounded", "sans-serif"]
     }
-  },
-  fontSize: {
-    base: "16px",
-    xl: "20px",
-    "3xl": "22px",
-    "7xl": "26px",
-    "21xl": "40px",
-    inherit: "inherit",
   },
   },
   plugins: [],
