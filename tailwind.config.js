@@ -11,8 +11,8 @@ module.exports = {
         primary: "#ff0000",
         secondary: "#00ff00",
         login: {
-          "Primary text": "#0C1421",
-          "Secondary text": "#313957",
+          "Primarytext": "#0C1421",
+          "Secondarytext": "#313957",
           "Link": "#1E4AE9",
           "inputbg": "#F3F9FA",
           "labels": "#0f0f0f",
