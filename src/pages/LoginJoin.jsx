@@ -14,7 +14,7 @@ function LoginJoin() {
   };
 
   return (
-    <div className="container flex min-w-full min-h-screen  flex-row justify-between font-Poppins">
+    <div className="container flex min-w-full min-h-screen  lg:flex-row justify-between font-Poppins flex-col-reverse">
       <div className="login-form w-[53%] min-h-full p-6 text-center flex justify-center items-center">
         <div className="form-container w-[60%] text-start h-[90%] dispaly flex flex-col   justify-between items-center">
           <div className="intro text-start w-[100%]  ">
@@ -34,7 +34,7 @@ function LoginJoin() {
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
             </div>
-            <div className="flex flex-col mt-6">
+            <div className="flex flex-col mt-7">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -45,6 +45,7 @@ function LoginJoin() {
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md "
               />
             </div>
+            <div className="mt-8">
             <p className="text-right text-login-Link my-5">
               <a href="#">Forgot Password?</a>
             </p>
@@ -54,9 +55,10 @@ function LoginJoin() {
             >
               Sign In
             </button>
+            </div>
           </form>
           <div className="social-login flex flex-col justify-between w-[100%] h-[25%] items-center">
-  <div className="flex items-center justify-center w-full my-4">
+  <div className="flex items-center justify-center w-full my-2">
     <hr className="flex-grow border-gray-300" />
     <span className="mx-2 text-gray-500">Or</span>
     <hr className="flex-grow border-gray-300" />
@@ -86,7 +88,7 @@ function LoginJoin() {
           </p>
         </div>
       </div>
-      <div className="image-container w-[47%]  h-screen overflow-hidden p-6">
+      <div className="image-container lg:w-[47%]  lg:h-screen w-[80%] h-[30%] overflow-hidden p-6">
         <Image
           src="/images/bg2.png"
           alt="login"
