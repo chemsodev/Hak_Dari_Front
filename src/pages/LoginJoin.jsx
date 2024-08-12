@@ -15,7 +15,7 @@ function LoginJoin() {
 
   return (
     <div className="container flex min-w-full min-h-screen  lg:flex-row justify-between font-Poppins flex-col-reverse">
-      <div className="login-form w-[53%] min-h-full p-6 text-center flex justify-center items-center">
+      <div className="login-form w-[50%] min-h-full p-6 text-center flex justify-center items-center">
         <div className="form-container w-[60%] text-start h-[90%] dispaly flex flex-col   justify-between items-center">
           <div className="intro text-start w-[100%]  ">
             <h2 className="text-3xl mb-7 font-Urbanist">WELCOME BACK 👋</h2>
@@ -88,13 +88,13 @@ function LoginJoin() {
           </p>
         </div>
       </div>
-      <div className="image-container lg:w-[47%]  lg:h-screen w-[80%] h-[30%] overflow-hidden p-6">
+      <div className="image-container w-full h-[45vh] lg:w-[50%] relative top-0 lg:h-screen overflow-hidden p-6 lg:sticky ">
         <Image
           src="/images/bg2.png"
           alt="login"
           width={500}
           height={500}
-          className="w-full h-full object-cover rounded-2xl"
+          className="w-full h-full object-cover rounded-2xl "
         />
       </div>
     </div>
