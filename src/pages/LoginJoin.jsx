@@ -15,8 +15,8 @@ function LoginJoin() {
 
   return (
     <div className="container flex min-w-full min-h-screen  lg:flex-row justify-between font-Poppins flex-col-reverse">
-      <div className="login-form w-[50%] min-h-full p-6 text-center flex justify-center items-center">
-        <div className="form-container w-[60%] text-start h-[90%] dispaly flex flex-col   justify-between items-center">
+      <div className="login-form w-[100%] lg:w-[50%] min-h-full lg:p-6 text-center flex justify-center items-center  lg:h-auto  h-[100%]">
+        <div className="form-container w-[80%] lg:w-[60%] text-start lg:h-[90%] h-[100%] dispaly flex flex-col   justify-between items-center">
           <div className="intro text-start w-[100%]  ">
             <h2 className="text-3xl mb-7 font-Urbanist">WELCOME BACK 👋</h2>
             <p>Today Is A New Day. It&apos;s Your Day. You Shape It.</p>
@@ -58,13 +58,13 @@ function LoginJoin() {
             </div>
           </form>
           <div className="social-login flex flex-col justify-between w-[100%] h-[25%] items-center">
-  <div className="flex items-center justify-center w-full my-2">
+  <div className="flex items-center justify-center w-[60%]  my-10 lg:my-2">
     <hr className="flex-grow border-gray-300" />
     <span className="mx-2 text-gray-500">Or</span>
     <hr className="flex-grow border-gray-300" />
   </div>
-  <div className="w-[100%] h-[60%] text-center">
-    <button className=" bg-login-inputbg text-login-Secondarytext p-3 w-[70%] rounded-md">
+  <div className="w-[100%] lg:h-[60%] lg:text-center  h-[30%] lg:block flex flex-row justify-between ">
+    <button className=" bg-login-inputbg text-login-Secondarytext p-3 lg:w-[70%]  w-[45%] rounded-md">
       <img
         src="/images/login-google.svg"
         alt="google"
@@ -72,7 +72,7 @@ function LoginJoin() {
       />{" "}
       Sign in with Google
     </button>
-    <button className=" bg-login-inputbg text-login-Secondarytext mt-4 p-3 w-[70%] rounded-md">
+    <button className=" bg-login-inputbg text-login-Secondarytext lg:mt-4 p-3  lg:w-[70%]  w-[45%] rounded-md">
       <img
         src="/images/login-facebook.svg"
         alt="facebook"
@@ -84,7 +84,7 @@ function LoginJoin() {
 </div>
 
           <p className="text-login-Primarytext font-semibold tracking-wide">
-            Don&apos;t you have an account? <a href="#" className="text-right text-login-Link my-5">Sign Up</a>
+            Don&apos;t you have an account? <a href="#" className="text-right text-login-Link lg:mt-7 mt-10">Sign Up</a>
           </p>
         </div>
       </div>
