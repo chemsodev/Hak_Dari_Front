@@ -2,8 +2,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Urbanist } from 'next/font/google';
+import {Poppins} from 'next/font/google'
 
 const urbanist = Urbanist({
+  weight:  ['800', '700', '600', '500', '400', '300', '200', '100'],
+  subsets: ['latin'],
+});
+const poppins = Poppins({
   weight:  ['800', '700', '600', '500', '400', '300', '200', '100'],
   subsets: ['latin'],
 });
@@ -22,7 +27,7 @@ function LoginJoin() {
     <div className="container flex min-w-full min-h-screen lg:flex-row justify-between font-Poppins flex-col-reverse">
       <div className="login-form w-[100%] lg:w-[50%] min-h-full lg:p-6 text-center flex justify-center items-center lg:h-auto h-[100%]">
         <div className="form-container w-[80%] lg:w-[60%] text-start lg:h-[90%] h-[100%] flex flex-col justify-between items-center">
-          <div className="intro text-start w-[100%]">
+          <div className={`intro text-start w-[100%] ${poppins.className} font-normal`}>
             <h2 className={`${urbanist.className} text-3xl font-extrabold`}>
               WELCOME BACK 👋
             </h2>
