@@ -33,7 +33,7 @@ function LoginJoin() {
             <h2 className={`${urbanist.className} text-3xl font-extrabold`}>
               WELCOME BACK 👋
             </h2>
-            <p>Today Is A New Day. It&apos;s Your Day. You Shape It.</p>
+            <p className="lg:mt-7 mt-5">Today Is A New Day. It&apos;s Your Day. You Shape It.</p>
             <p className="mt-2">Sign In To Start Managing Your Projects.</p>
           </div>
           <form onSubmit={handleSubmit} className="form w-full h-[50%]">
