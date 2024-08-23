@@ -3,48 +3,88 @@ import { useState } from "react";
 import Image from "next/image";
 import { Urbanist } from "next/font/google";
 import { Poppins } from "next/font/google";
+import emailjs from '@emailjs/browser';
 
 const urbanist = Urbanist({
   weight: ["800", "700", "600", "500", "400", "300", "200", "100"],
   subsets: ["latin"],
 });
+
 const poppins = Poppins({
   weight: ["800", "700", "600", "500", "400", "300", "200", "100"],
   subsets: ["latin"],
 });
 
+function generateVerificationCode(length = 6) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let code = '';
+  for (let i = 0; i < length; i++) {
+    code += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return code;
+}
+
 function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [Address, setAddress] = useState("");
+  const [address, setAddress] = useState("");
+  const [verificationCode, setVerificationCode] = useState("");
+  const [generatedCode, setGeneratedCode] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [verificationSent, setVerificationSent] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit1 = (event) => {
     event.preventDefault();
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Phone:", phone);
-    console.log("Address:", Address);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
+    sendEmail();
+  };
+
+  const handleSubmit2 = (event) => {
+    event.preventDefault();
+    if (verificationCode === generatedCode) {
+      alert("Verification Successful");
+    } else {
+      alert("Verification Failed");
+    }
+  };
+
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+
+  const sendEmail = () => {
+    const code = generateVerificationCode();
+    setGeneratedCode(code);
+    console.log("Generated Verification Code:", code);
+
+    emailjs.send(serviceId, 'template_9d4k2dj', {
+      name: name,
+      email: email,
+      verificationcode: code
+    }, publicKey)
+      .then(
+        (result) => {
+          console.log('SUCCESS!', result.text);
+          setVerificationSent(true);
+        },
+        (error) => {
+          console.log('FAILED...', error);
+        }
+      );
   };
 
   return (
-    <div
-      className={`container flex min-w-full min-h-screen lg:flex-row justify-between ${poppins.className} flex-col-reverse`}
-    >
+    <div className={`container flex min-w-full min-h-screen lg:flex-row justify-between ${poppins.className} flex-col-reverse`}>
       <div className="signup-form w-[100%] lg:w-[50%] min-h-full lg:p-6 text-center flex justify-center items-center md:h-auto h-[100%]">
-        <div className="form-container w-[80%] lg:w-[60%] text-start  h-[100%] flex flex-col justify-between items-center">
-          <div className={`intro text-start w-[100%]  font-normal`}>
+        <div className="form-container w-[80%] lg:w-[60%] text-start h-[100%] flex flex-col justify-between items-center">
+          <div className={`intro text-start w-[100%] font-normal`}>
             <h2 className={`${urbanist.className} text-3xl font-extrabold`}>
-            Create an Account
+              Create an Account
             </h2>
-            <p  className="lg:mt-7 mt-5">Today Is A New Day. It&apos;s Your Day. You Shape It.</p>
+            <p className="lg:mt-7 mt-5">Today Is A New Day. It&apos;s Your Day. You Shape It.</p>
             <p className="mt-2">Sign Up To Start Managing Your Projects.</p>
           </div>
-          <form onSubmit={handleSubmit} className="form w-full h-[70%] flex flex-col justify-between Items-center">
+          <form onSubmit={handleSubmit1} className={`form w-full h-[70%] flex flex-col justify-between Items-center ${verificationSent ? 'hidden' : ''}`}>
             <div className="flex flex-col">
               <label htmlFor="name" className="font-medium">
                 Full Name
@@ -91,21 +131,67 @@ function SignupPage() {
               <input
                 type="Address"
                 id="Address"
-                value={Address}
+                value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 required
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
             </div>
-           
-              <button
-                type="submit"
-                className="btn w-full rounded-lg bg-login-btn p-4 text-xl text-login-btnText font-medium"
-              >
-            Create an Account 
-              </button>
+            <button
+              type="submit"
+              className="btn w-full rounded-lg bg-login-btn p-4 text-xl text-login-btnText font-medium"
+            >
+              Create an Account
+            </button>
           </form>
-          <p className="text-login-Primarytext  tracking-wide font-medium min-w-80 lg:mt-5 mt-2">
+          <form onSubmit={handleSubmit2} className={`form w-full h-[70%] flex flex-col justify-between Items-center ${verificationSent ? '' : 'hidden'}`}>
+            <div className="flex flex-col">
+              <label htmlFor="verificationcode" className="font-medium">
+                Email Verification Code
+              </label>
+              <input
+                type="text"
+                id="verificationcode"
+                value={verificationCode}
+                onChange={(e) => setVerificationCode(e.target.value)}
+                required
+                className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="password1" className="font-medium">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password1"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="password2" className="font-medium">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="password2"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
+              />
+            </div>
+            <button
+              type="submit"
+              className="btn w-full rounded-lg bg-login-btn p-4 text-xl text-login-btnText font-medium"
+            >
+              Verify Account
+            </button>
+          </form>
+          <p className="text-login-Primarytext tracking-wide font-medium min-w-80 lg:mt-5 mt-2">
             Already have an Account?{" "}
             <a href="#" className="text-right text-login-Link ">
               Log In
