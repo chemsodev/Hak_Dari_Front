@@ -1,9 +1,12 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { Urbanist } from "next/font/google";
-import { Poppins } from "next/font/google";
+import { Urbanist, Poppins } from "next/font/google";
 import emailjs from '@emailjs/browser';
+import { SignupFormSchema1, SignupFormSchema2 } from "@/validations/signupschema";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 const urbanist = Urbanist({
   weight: ["800", "700", "600", "500", "400", "300", "200", "100"],
@@ -25,25 +28,21 @@ function generateVerificationCode(length = 6) {
 }
 
 function SignupPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [verificationCode, setVerificationCode] = useState("");
   const [generatedCode, setGeneratedCode] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [verificationSent, setVerificationSent] = useState(false);
 
-  const handleSubmit1 = (event) => {
-    event.preventDefault();
-    sendEmail();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(verificationSent ? SignupFormSchema2 : SignupFormSchema1)
+  });
+
+  const onSubmit1 = (data) => {
+    sendEmail(data);
   };
 
-  const handleSubmit2 = (event) => {
-    event.preventDefault();
-    if (verificationCode === generatedCode) {
+  const onSubmit2 = (data) => {
+    if (data.verificationCode === generatedCode) {
       alert("Verification Successful");
+      // Continue with the signup process (e.g., save user data)
     } else {
       alert("Verification Failed");
     }
@@ -52,14 +51,12 @@ function SignupPage() {
   const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
   const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
 
-  const sendEmail = () => {
+  const sendEmail = (data) => {
     const code = generateVerificationCode();
     setGeneratedCode(code);
-    console.log("Generated Verification Code:", code);
-
     emailjs.send(serviceId, 'template_9d4k2dj', {
-      name: name,
-      email: email,
+      name: data.name,
+      email: data.email,
       verificationcode: code
     }, publicKey)
       .then(
@@ -84,58 +81,47 @@ function SignupPage() {
             <p className="lg:mt-7 mt-5">Today Is A New Day. It&apos;s Your Day. You Shape It.</p>
             <p className="mt-2">Sign Up To Start Managing Your Projects.</p>
           </div>
-          <form onSubmit={handleSubmit1} className={`form w-full h-[70%] flex flex-col justify-between Items-center ${verificationSent ? 'hidden' : ''}`}>
+
+          <form onSubmit={handleSubmit(onSubmit1)} className={`form w-full h-[70%] flex flex-col justify-between Items-center ${verificationSent ? 'hidden' : ''}`}>
             <div className="flex flex-col">
-              <label htmlFor="name" className="font-medium">
-                Full Name
-              </label>
+              <label htmlFor="name" className="font-medium">Full Name</label>
               <input
                 type="text"
                 id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
+                {...register("name")}
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
+              {errors.name && <p className="text-red-500">{errors.name.message}</p>}
             </div>
             <div className="flex flex-col">
-              <label htmlFor="email" className="font-medium">
-                Email
-              </label>
+              <label htmlFor="email" className="font-medium">Email</label>
               <input
                 type="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+                {...register("email")}
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
+              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             </div>
             <div className="flex flex-col">
-              <label htmlFor="phone" className="font-medium">
-                Phone
-              </label>
+              <label htmlFor="phone" className="font-medium">Phone</label>
               <input
-                type="phone"
+                type="text"
                 id="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
+                {...register("phone")}
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
+              {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
             </div>
             <div className="flex flex-col">
-              <label htmlFor="address" className="font-medium">
-                Address
-              </label>
+              <label htmlFor="address" className="font-medium">Address</label>
               <input
-                type="Address"
-                id="Address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                required
+                type="text"
+                id="address"
+                {...register("address")}
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
+              {errors.address && <p className="text-red-500">{errors.address.message}</p>}
             </div>
             <button
               type="submit"
@@ -144,45 +130,37 @@ function SignupPage() {
               Create an Account
             </button>
           </form>
-          <form onSubmit={handleSubmit2} className={`form w-full h-[70%] flex flex-col justify-between Items-center ${verificationSent ? '' : 'hidden'}`}>
+
+          <form onSubmit={handleSubmit(onSubmit2)} className={`form w-full h-[70%] flex flex-col justify-between Items-center ${verificationSent ? '' : 'hidden'}`}>
             <div className="flex flex-col">
-              <label htmlFor="verificationcode" className="font-medium">
-                Email Verification Code
-              </label>
+              <label htmlFor="verificationCode" className="font-medium">Email Verification Code</label>
               <input
                 type="text"
-                id="verificationcode"
-                value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
-                required
+                id="verificationCode"
+                {...register("verificationCode")}
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
+              {errors.verificationCode && <p className="text-red-500">{errors.verificationCode.message}</p>}
             </div>
             <div className="flex flex-col">
-              <label htmlFor="password1" className="font-medium">
-                Password
-              </label>
+              <label htmlFor="password" className="font-medium">Password</label>
               <input
                 type="password"
-                id="password1"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+                id="password"
+                {...register("password")}
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
+              {errors.password && <p className="text-red-500">{errors.password.message}</p>}
             </div>
             <div className="flex flex-col">
-              <label htmlFor="password2" className="font-medium">
-                Confirm Password
-              </label>
+              <label htmlFor="confirmPassword" className="font-medium">Confirm Password</label>
               <input
                 type="password"
-                id="password2"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
+                id="confirmPassword"
+                {...register("confirmPassword")}
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
+              {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
             </div>
             <button
               type="submit"
@@ -191,6 +169,7 @@ function SignupPage() {
               Verify Account
             </button>
           </form>
+
           <p className="text-login-Primarytext tracking-wide font-medium min-w-80 lg:mt-5 mt-2">
             Already have an Account?{" "}
             <a href="#" className="text-right text-login-Link ">

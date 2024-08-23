@@ -4,7 +4,7 @@ import Signup from "@pages/SignupPage";
 export default function Home() {
   return (
     <main className="app min-h-screen w-full" >
-      <Signup/>
+      <Login/>
     </main>
   );
 }

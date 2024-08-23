@@ -1,8 +1,11 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { Urbanist } from "next/font/google";
-import { Poppins } from "next/font/google";
+import { Urbanist, Poppins } from "next/font/google";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { loginFormSchema } from "@/validations/loginschema";
 
 const urbanist = Urbanist({
   weight: ["800", "700", "600", "500", "400", "300", "200", "100"],
@@ -14,13 +17,13 @@ const poppins = Poppins({
 });
 
 function LoginJoin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(loginFormSchema),
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+  const onSubmit = (data) => {
+    console.log(data);
+    // Perform login logic here
   };
 
   return (
@@ -29,14 +32,14 @@ function LoginJoin() {
     >
       <div className="login-form w-[100%] lg:w-[50%] min-h-full lg:p-6 text-center flex justify-center items-center md:h-auto h-[100%]">
         <div className="form-container w-[80%] lg:w-[60%] text-start lg:h-[90%] h-[100%] flex flex-col justify-between items-center">
-          <div className={`intro text-start w-[100%]  font-normal`}>
+          <div className={`intro text-start w-[100%] font-normal`}>
             <h2 className={`${urbanist.className} text-3xl font-extrabold`}>
               WELCOME BACK 👋
             </h2>
             <p className="lg:mt-7 mt-5">Today Is A New Day. It&apos;s Your Day. You Shape It.</p>
             <p className="mt-2">Sign In To Start Managing Your Projects.</p>
           </div>
-          <form onSubmit={handleSubmit} className="form w-full h-[50%]">
+          <form onSubmit={handleSubmit(onSubmit)} className="form w-full h-[50%]">
             <div className="flex flex-col">
               <label htmlFor="email" className="font-medium">
                 Email
@@ -44,11 +47,10 @@ function LoginJoin() {
               <input
                 type="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+                {...register('email')}
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
+              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             </div>
             <div className="flex flex-col mt-7">
               <label htmlFor="password" className="font-medium">
@@ -57,11 +59,10 @@ function LoginJoin() {
               <input
                 type="password"
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+                {...register('password')}
                 className="mt-5 bg-login-inputbg p-4 focus:outline-none rounded-md"
               />
+              {errors.password && <p className="text-red-500">{errors.password.message}</p>}
             </div>
             <div className="mt-8">
               <p className="text-right text-login-Link my-5">
@@ -83,32 +84,33 @@ function LoginJoin() {
               <span className="mx-2 text-gray-500">Or</span>
               <hr className="flex-grow border-gray-300" />
             </div>
-            <div className="w-[100%] lg:h-[70%]  h-[35%] lg:text-center flex flex-col items-center ">
+            <div className="w-[100%] lg:h-[70%] h-[35%] lg:text-center flex flex-col items-center ">
               <div className="lg:block flex flex-row justify-between h-[100%] w-[100%]">
-              <button className="bg-login-inputbg text-login-Secondarytext p-3 lg:w-[70%] w-[45%] rounded-md lg:min-w-60">
-                <img
-                  src="/images/login-google.svg"
-                  alt="google"
-                  className="inline-flex font-normal"
-                />{" "}
-                <span className="md:hidden">Google</span>
-                <span className="hidden md:inline">Sign in with Google</span>
-              </button>
-              <button className="bg-login-inputbg text-login-Secondarytext lg:mt-4 p-3 lg:w-[70%] w-[45%] rounded-md lg:min-w-60">
-                <img
-                  src="/images/login-facebook.svg"
-                  alt="facebook"
-                  className="inline-flex font-normal"
-                />{" "}
-                <span className="md:hidden">Facebook</span>
-                <span className="hidden md:inline">Sign in with Facebook</span>
-              </button></div>
-              <p className="text-login-Primarytext  tracking-wide font-medium min-w-80 lg:mt-5 mt-2">
-              Don&apos;t you have an Account?{" "}
-              <a href="#" className="text-right text-login-Link ">
-                Sign Up
-              </a>
-            </p>
+                <button className="bg-login-inputbg text-login-Secondarytext p-3 lg:w-[70%] w-[45%] rounded-md lg:min-w-60">
+                  <img
+                    src="/images/login-google.svg"
+                    alt="google"
+                    className="inline-flex font-normal"
+                  />{" "}
+                  <span className="md:hidden">Google</span>
+                  <span className="hidden md:inline">Sign in with Google</span>
+                </button>
+                <button className="bg-login-inputbg text-login-Secondarytext lg:mt-4 p-3 lg:w-[70%] w-[45%] rounded-md lg:min-w-60">
+                  <img
+                    src="/images/login-facebook.svg"
+                    alt="facebook"
+                    className="inline-flex font-normal"
+                  />{" "}
+                  <span className="md:hidden">Facebook</span>
+                  <span className="hidden md:inline">Sign in with Facebook</span>
+                </button>
+              </div>
+              <p className="text-login-Primarytext tracking-wide font-medium min-w-80 lg:mt-5 mt-2">
+                Don&apos;t you have an Account?{" "}
+                <a href="#" className="text-right text-login-Link ">
+                  Sign Up
+                </a>
+              </p>
             </div>
           </div>
         </div>
