@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 
 module.exports = {
   content: [
@@ -7,6 +6,22 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx}",
   ],  theme: {
     extend: {
+      screens: {
+        'min860': '820px', 
+        'min500': '500px',
+      },
+      fontSize: {
+        headline: 'var(--font-size-base)',
+        paragraph: 'var(--font-size-p)',
+        small: 'var(--font-size-small)',
+        smaller: 'var(--font-size-smaller)',
+      },
+      boxShadow: {
+        'custom': '0px 2px 25px 0px rgba(0, 0, 0, 0.1)',
+        'soft': '0px 2px 10px 0px rgba(0, 0, 0, 0.03)',
+        'innertop': 'inset 0 20px 20px rgba(252, 252, 252, 1)',
+        'bottom': 'inset 0 -20px 20px rgba(252, 252, 252, 1)',
+      },
       colors: {
         primary: "#ff0000",
         secondary: "#00ff00",
@@ -25,15 +40,21 @@ module.exports = {
         },
         Landingpages:{
           "bg-color" : "#FCFCFC",
-          "brand primary" : "#57B8FF",
+          "brand-primary" : "#57B8FF",
           "brand-secondary" : "#119BFF",
           "textPrimary" : "#0F0F0F",
+          "layer2" : "#F3F9FA",
+          "gray" : "#C1C1C1",
+          "card-color" : "#FEFEFE",
+          "dark-bleu" : "#162D3A",
+          "text-gray" : "#252525",
+          "lighter-bleu" : "#80C9FF",
         },
       },
       spacing: {},
     fontFamily: {
-      "Poppins": ["Poppins", "sans-serif"],
-      "Urbanist": ["Urbanist", "sans-serif"],
+      "Poppins": ["poppins", "sans-serif"],
+      "Urbanist": ["urbanist", "sans-serif"],
       "unbounded":["unbounded", "sans-serif"]
     }
   },
