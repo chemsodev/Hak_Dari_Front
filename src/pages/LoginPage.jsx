@@ -86,20 +86,24 @@ function LoginJoin() {
             </div>
             <div className="w-[100%] lg:h-[70%] h-[35%] lg:text-center flex flex-col items-center ">
               <div className="lg:block flex flex-row justify-between h-[100%] w-[100%]">
-                <button className="bg-login-inputbg text-login-Secondarytext p-3 lg:w-[70%] w-[45%] rounded-md lg:min-w-60">
-                  <img
+                <button className="bg-login-inputbg text-login-Secondarytext p-3 lg:w-[70%] w-[45%] rounded-md lg:min-w-60 font-normal">
+                  <Image
+                   width={25}
+                   height={25}
                     src="/images/login-google.svg"
                     alt="google"
-                    className="inline-flex font-normal"
+                    className="inline-flex"
                   />{" "}
                   <span className="md:hidden">Google</span>
                   <span className="hidden md:inline">Sign in with Google</span>
                 </button>
-                <button className="bg-login-inputbg text-login-Secondarytext lg:mt-4 p-3 lg:w-[70%] w-[45%] rounded-md lg:min-w-60">
-                  <img
+                <button className="bg-login-inputbg text-login-Secondarytext lg:mt-4 p-3 lg:w-[70%] w-[45%] rounded-md lg:min-w-60 font-normal">
+                  <Image
+                   width={25}
+                   height={25}
                     src="/images/login-facebook.svg"
                     alt="facebook"
-                    className="inline-flex font-normal"
+                    className="inline-flex "
                   />{" "}
                   <span className="md:hidden">Facebook</span>
                   <span className="hidden md:inline">Sign in with Facebook</span>
