@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Header from '../components/pages-nav-bar';
 import Image from "next/image";
 import Property from "@components/property";
 
