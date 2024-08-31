@@ -50,14 +50,22 @@ module.exports = {
           "text-gray" : "#252525",
           "lighter-bleu" : "#80C9FF",
         },
+        hero:{
+          "tagbg" : "#F3F9FA",
+          "tagtext": "#1B426F",
+        }
       },
       spacing: {},
     fontFamily: {
       "Poppins": ["poppins", "sans-serif"],
       "Urbanist": ["urbanist", "sans-serif"],
       "unbounded":["unbounded", "sans-serif"]
-    }
+    },
+
+     height: {
+    '100': '593px',
   },
   },
+},
   plugins: [],
 };
