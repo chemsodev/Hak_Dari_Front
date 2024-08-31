@@ -23,7 +23,7 @@ const Hero = () => {
           <div className="bg-hero-tagbg text-hero-tagtext text-3xl px-4 py-2 rounded-full mb-4 w-[40%] text-center flex justify-center items-center">
             <span><Image src={"images/pin-drop.svg"} width={34} height={34} className="inline"/> We Have 42 Offices Around Algeria</span>
           </div>
-          <h2 className="text-white text-lg lg:text-2xl font-medium">
+          <h2 className="text-white text-xl lg:text-2xl font-medium">
             We Can Help You To Find You
           </h2>
           <p className="text-white text-lg lg:text-2xl">Dream Property</p>
