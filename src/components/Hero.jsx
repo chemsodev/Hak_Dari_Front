@@ -9,8 +9,8 @@ const poppins = Poppins({
   
 const Hero = () => {
   return (
-    <div className={`w-full flex justify-center items-center ${poppins.className}`}>
-      <div className="relative w-[80%] lg:h-100 md:h-96 h-56 rounded-3xl overflow-hidden shadow-lg">
+    <div className={`w-full relative flex justify-center items-center ${poppins.className}`}>
+      <div className="relative h-full w-[80%] bg-red-700  lg:h-100 md:h-96  rounded-3xl overflow-hidden ">
         <video
           src="video/herosection.mp4"
           autoPlay
@@ -29,12 +29,12 @@ const Hero = () => {
           <p className="text-white text-lg lg:text-2xl">Dream Property</p>
         </div>
 
-        <div className="absolute top-0 right-0  bg-white rounded-[50%] w-auto h-auto">
+      </div>
+        <div className="absolute -bottom-14 flex justify-center items-center left-52 z-10  bg-white rounded-[50%] w-auto h-auto">
           <button>
             <Image src="/images/Btn.png" alt="Btn" width={116} height={116} />
           </button>
         </div>
-      </div>
     </div>
   );
 };
