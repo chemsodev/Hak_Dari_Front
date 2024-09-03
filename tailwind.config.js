@@ -51,8 +51,9 @@ module.exports = {
           "lighter-bleu" : "#80C9FF",
         },
         hero:{
-          "tagbg" : "#F3F9FA",
+          "tagbg" : "rgb(137 239 255 / 80%)",
           "tagtext": "#1B426F",
+          "ptext":"#162D3A",
         }
       },
       spacing: {},
