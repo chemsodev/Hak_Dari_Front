@@ -32,7 +32,7 @@ const Hero = () => {
         </div>
 
       </div>
-        <div className="absolute -bottom-14 flex justify-center items-center lg:left-40 md:left-36  xl:left-44 sm:left-28 z-10 p-1 bg-white rounded-[50%] w-auto h-auto">
+        <div className="absolute -bottom-14 flex justify-center items-center lg:left-44 md:left-40  xl:left-48 sm:left-32 z-10 p-1 bg-white rounded-[50%] w-auto h-auto">
             <Link href={"/"}><Image src="/images/Btn.png" alt="Btn" width={116} height={116} /></Link>
         </div>
     </div>
