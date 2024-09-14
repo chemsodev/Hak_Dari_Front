@@ -9,6 +9,7 @@ module.exports = {
       screens: {
         'min860': '820px', 
         'min500': '500px',
+        'min1100' : '1200px',
       },
       fontSize: {
         headline: 'var(--font-size-base)',
