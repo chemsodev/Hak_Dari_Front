@@ -38,7 +38,7 @@ const images = [
 const responsiveOptions = [
 
   {
-    breakpoint: '1024px',
+    breakpoint: '900px',
     numVisible: 4,
     numScroll: 1
   },
@@ -59,8 +59,8 @@ const imageTemplate = (image, index) => {
   return (
     <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
       <div className="relative">
-        <Image src={image.src} alt={image.alt} width={128} height={128} className="w-32 h-32 lg:w-56 lg:h-56 object-cover shadow-2 rounded-2xl" />
-        <label className={`absolute bottom-2 left-2 text-lg font-medium rounded-lg px-1 ${image.labelClass}`}>
+        <Image src={image.src} alt={image.alt} width={2000} height={2000} className="w-44 h-44 lg:w-56 lg:h-56 object-cover shadow-2 rounded-2xl" />
+        <label className={`absolute bottom-2 left-2 px-3 py-1 rounded-full text-smaller ${image.labelClass}`}>
           <span className="inline-block align-middle">
             <Image src={`/images/icons/${index + 1}.svg`} alt="icon" width={10} height={10} className="mx-1 inline-block align-middle" />
           </span>
