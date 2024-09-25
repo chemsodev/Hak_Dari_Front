@@ -4,7 +4,9 @@ import { z } from 'zod';
 export const SignupFormSchema1 = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters long.' }).trim(),
   email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
-  phone: z.string().min(10, { message: 'Phone number must be at least 10 digits long.' }).trim(),
+  phone: z.string()
+  .regex(/^\d{12}$/, { message: 'Phone number must be exactly 12 digits long.' })
+  .trim(),
   address: z.string().min(5, { message: 'Address must be at least 5 characters long.' }).trim(),
 });
 
