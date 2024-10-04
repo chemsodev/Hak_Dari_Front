@@ -25,6 +25,9 @@
   box-sizing: border-box;
   line-height: 150%;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 :root {
   --font-size-base: 1.6em;
