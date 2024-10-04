@@ -3,7 +3,7 @@ import "@styles/globals.css";
 import '../styles/globals.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Header from "./components/Header";
+import Header from "./components/header";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
 const unbounded = Unbounded({ subsets: ["latin"], weight: ["400", "600"] });
