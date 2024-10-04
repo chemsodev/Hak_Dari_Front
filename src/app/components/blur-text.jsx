@@ -5,6 +5,8 @@ function BlurredText({ children }) {
   const textRef = useRef(null);
 
   useEffect(() => {
+    const textElement = textRef.current;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -17,13 +19,13 @@ function BlurredText({ children }) {
       }
     );
 
-    if (textRef.current) {
-      observer.observe(textRef.current);
+    if (textElement) {
+      observer.observe(textElement);
     }
 
     return () => {
-      if (observer && textRef.current) {
-        observer.unobserve(textRef.current);
+      if (observer && textElement) {
+        observer.unobserve(textElement);
       }
     };
   }, []);
@@ -33,7 +35,8 @@ function BlurredText({ children }) {
       ref={textRef}
       className={`transition duration-[1.5s] delay-[1s] text-paragraph font-Urbanist ease-in ${
         isInView ? 'filter-none' : 'filter blur-sm'
-      }`}>
+      }`}
+    >
       {children}
     </p>
   );

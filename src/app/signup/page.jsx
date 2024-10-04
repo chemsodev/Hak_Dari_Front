@@ -28,7 +28,7 @@ function generateVerificationCode(length = 6) {
   return code;
 }
 
-function page() {
+function SignupPage() {
   const [generatedCode, setGeneratedCode] = useState("");
   const [verificationSent, setVerificationSent] = useState(false);
 
@@ -192,4 +192,4 @@ function page() {
   );
 }
 
-export default page;
+export default SignupPage;

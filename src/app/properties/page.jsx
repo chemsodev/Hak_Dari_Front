@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Property from "@app/components/property";
 
-function page() {
+function PropertiesPage() {
   
 
   return (
@@ -109,4 +109,4 @@ function page() {
   );
 }
 
-export default page;
+export default PropertiesPage;

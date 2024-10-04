@@ -13,7 +13,7 @@ const handleScroll = debounce(() => {
   setScrollY(window.scrollY);
 }, 50);
 
-function page() {
+function Home() {
   const [scrollY, setScrollY] = useState(0);
 
   const handleScroll = () => {
@@ -276,4 +276,4 @@ function page() {
   );
 }
 
-export default page;
+export default Home;

@@ -5,7 +5,7 @@ import { Urbanist, Poppins } from "next/font/google";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { loginFormSchema } from "@/validations/loginschema";
+import { LoginFormSchema } from "@/validations/loginschema";
 import Link from "next/link";
 
 const urbanist = Urbanist({
@@ -18,9 +18,9 @@ const poppins = Poppins({
 });
 
 
-function page() {
+function LoginPage() {
   const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: zodResolver(loginFormSchema),
+    resolver: zodResolver(LoginFormSchema),
   });
 
   const onSubmit = (data) => {
@@ -134,4 +134,4 @@ function page() {
   );
 }
 
-export default page;
+export default LoginPage;
